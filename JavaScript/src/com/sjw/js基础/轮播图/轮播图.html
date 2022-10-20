@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var i=0;
+        function fun2(){
+            var img = document.getElementById("img");
+            img.src="banner_"+(i+1)+".jpg";
+            i+=2;
+            i%=3;
+        }
+
+        function fun1(){
+            setInterval(fun2,2000);
+        }
+        fun1();
+    </script>
+
+</head>
+<body>
+    <img id="img" src="banner_1.jpg">
+
+</body>
+</html>

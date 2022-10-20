@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p{
+            text-align: center;
+        }
+        span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <span id="time">
+                5s
+        </span>
+        之后，自动跳转到首页。。。
+    </p>
+    <script>
+        var i=0;
+        var id;
+        function fun1(){
+            i++;
+            if (i==5){
+                clearInterval(id)
+                location.href="https://www.baidu.com";
+                //location.reload();
+            }
+            else{
+                var time = document.getElementById("time");
+                time.innerHTML=(5-i)+"s";
+
+            }
+        }
+        id = setInterval(fun1, 1000);
+
+    </script>
+</body>
+</html>

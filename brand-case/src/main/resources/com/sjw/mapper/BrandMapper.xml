@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sjw.mapper.BrandMapper">
+
+    <delete id="deleteByIds">
+        delete from tb_brand where id in
+        <foreach collection="ids" item="id" separator="," close=")" open="(">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectTotalCountByCondition" resultType="java.lang.Integer">
+        select count(*) from tb_brand
+        <where>
+            <if test="status!=null and status!=''">
+                status=#{status}
+            </if>
+            <if test="brand_name!=null and brand_name!=''">
+                brand_name like #{brand_name}
+            </if>
+            <if test="company_name!=null and company_name!=''">
+                company_name like #{company_name}
+            </if>
+        </where>
+    </select>
+    <select id="selectByCondition" resultType="com.sjw.pojo.Brand">
+        select * from tb_brand
+        <where>
+            <if test="brand.status!=null and brand.status!=''">
+                status=#{brand.status}
+            </if>
+            <if test="brand.brand_name!=null and brand.brand_name!=''">
+                brand_name like #{brand.brand_name}
+            </if>
+            <if test="brand.company_name!=null and brand.company_name!=''">
+                company_name like #{brand.company_name}
+            </if>
+        </where>
+        limit #{begin},#{length}
+    </select>
+
+</mapper>

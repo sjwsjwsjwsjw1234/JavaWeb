@@ -1,0 +1,7 @@
+Method方法出现ArithmeticException异常
+异常原因/ by zero
+----------------------------------------
+Method方法出现NullPointerException异常
+异常原因null
+----------------------------------------
+共出现2次异常

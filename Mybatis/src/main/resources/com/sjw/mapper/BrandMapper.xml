@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sjw.mapper.BrandMapper">
+    <select id="selectAll" resultType="com.sjw.pojo.Brand">
+        select *
+        from tb_brand;
+    </select>
+    <select id="selectByid" resultType="com.sjw.pojo.Brand">
+        select *
+        from tb_brand
+        where id = #{id};
+    </select>
+
+    <select id="selectByCondition" resultType="com.sjw.pojo.Brand">
+        select *
+        from tb_brand
+        <where>
+            <if test="status != null">
+                status = #{status}
+            </if>
+            <if test="company_name != null and company_name != ''">
+                and company_name like #{company_name}
+            </if>
+            <if test="brand_name != null and brand_name != ''">
+                and brand_name like #{brand_name}
+            </if>
+        </where>
+    </select>
+    <select id="selectBySingle" resultType="com.sjw.pojo.Brand">
+        select *
+        from tb_brand
+        <where>
+            <choose>
+                <when test="STATUS!=null">
+                    status=#{STATUS}
+                </when>
+                <when test="brand_name != null and brand_name != ''">
+                    brand_name like #{brand_name}
+                </when>
+                <when test="company_name != null and company_name != ''">
+                    company_name like #{company_name}
+                </when>
+            </choose>
+        </where>
+    </select>
+</mapper>

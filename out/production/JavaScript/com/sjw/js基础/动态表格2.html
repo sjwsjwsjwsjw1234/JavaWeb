@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border: black 1px solid;
+            margin: auto;
+            width: 500px;
+        }
+        td,th{
+            border: black 1px solid;
+            text-align: center;
+        }
+        div{
+            margin: 50px;
+            text-align: center;
+        }
+        
+    </style>
+    <script>
+        function fun1(x){
+            var table=x.parentNode.parentNode.parentNode;
+            var tr=x.parentNode.parentNode;
+            table.removeChild(tr)
+        }
+    </script>
+</head>
+<body>
+<div>
+    <input placeholder="请输入编号" type="text" id="id">
+    <input placeholder="请输入姓名" type="text" id="name">
+    <input placeholder="请输入性别" type="text" id="gender">
+    <input placeholder="请输入编号" type="button" id="bt" value="添加">
+</div>
+<table id="tb">
+    <caption>
+        <td>
+            <input type="checkbox" id="selectAll" class="cls1">
+        </td>
+        <td>
+            编号
+        </td>
+        <td>
+            姓名
+        </td>
+        <td>
+            性别
+        </td>
+        <td>
+            操作
+        </td>
+    </caption>
+    <tr>
+        <td>
+            <input type="checkbox" class="cls1">
+        </td>
+        <td>
+            1
+        </td>
+        <td>
+            任我行
+        </td>
+        <td>
+            男
+        </td>
+        <td>
+            <a href="javascript:void(0);" onclick="fun1(this)">删除</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" class="cls1">
+        </td>
+        <td>
+            2
+        </td>
+        <td>
+            令狐冲
+        </td>
+        <td>
+            男
+        </td>
+        <td>
+            <a href="javascript:void(0);" onclick="fun1(this)">删除</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" class="cls1">
+        </td>
+        <td>
+            3
+        </td>
+        <td>
+            岳不群
+        </td>
+        <td>
+            ？
+        </td>
+        <td>
+            <a href="javascript:void(0);" onclick="fun1(this)">删除</a>
+        </td>
+    </tr>
+</table>
+<div id="div2">
+    <button id="bAll">
+        全选
+    </button>
+    <button id="nbAll">
+        全不选
+    </button>
+    <button id="bre">
+        反选
+    </button>
+</div>
+<script>
+    
+    var items = document.getElementsByTagName("tr");
+    for (let i = 0; i < items.length; i++) {
+        var x = items.item(i);
+        x.onmouseover=function (){
+            this.style.background="pink";
+        }
+        x.onmouseleave=function (){
+            this.style.background="white";
+        }
+    }
+    document.getElementById("bt").onclick=function (){
+        var id=document.getElementById("id").value;
+        var name=document.getElementById("name").value;
+        var gender=document.getElementById("gender").value;
+        var td1=document.createElement("td");
+        td1.appendChild(document.createTextNode(id));
+        var td2=document.createElement("td");
+        td2.appendChild(document.createTextNode(name));
+        var td3=document.createElement("td");
+        td3.appendChild(document.createTextNode(gender));
+        var tr = document.createElement("tr");
+        var td5=document.createElement("td");
+        var input = document.createElement("input");
+        input.type="checkbox";
+        input.class="cls1";
+        input.onclick=function (){
+            input.checked=!(input.checked);
+        }
+        td5.appendChild(input);
+        tr.appendChild(td5);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        var a=document.createElement("a");
+        a.setAttribute("href","javascript:void(0);");
+        a.innerHTML="删除";
+        a.setAttribute("onclick","fun1(this)")
+        var td4 = document.createElement("td");
+        td4.appendChild(a);
+        tr.appendChild(td4);
+        tr.onmouseover=function (){
+            tr.style.background="pink";
+        }
+        tr.onmouseleave=function (){
+            tr.style.background="white";
+        }
+        
+        document.getElementById("tb").appendChild(tr);
+    }
+    document.getElementById("bAll").onclick=function (){
+        var items = document.getElementsByClassName("cls1");
+        for (let i = 0; i < items.length; i++) {
+            var element = items.item(i);
+            element.checked=true;
+        }
+    }
+    document.getElementById("nbAll").onclick=function (){
+        var items = document.getElementsByClassName("cls1");
+        for (let i = 0; i < items.length; i++) {
+            var element = items.item(i);
+            element.checked=false;
+        }
+    }
+    document.getElementById("bre").onclick=function (){
+        var items = document.getElementsByClassName("cls1");
+        var cnt=1;
+        for (let i = 1; i < items.length; i++) {
+            var element = items.item(i);
+            if (cnt && element.checked==true){
+                cnt=0;
+            }
+            element.checked=!(element.checked);
+        }
+        if (cnt){
+            items.item(0).checked=true;
+        }else{
+            items.item(0).checked=false;
+        }
+    }
+    document.getElementById("selectAll").onclick=function (){
+        if (this.checked==true){
+            var items = document.getElementsByClassName("cls1");
+            for (let i = 1; i < items.length; i++) {
+                var element = items.item(i);
+                element.checked=true;
+            }
+        }else{
+            var items = document.getElementsByClassName("cls1");
+            for (let i = 1; i < items.length; i++) {
+                var element = items.item(i);
+                element.checked=false;
+            }
+            
+        }
+    }
+    //var items = document.getElementsByTagName("tr");
+    
+    
+
+</script>
+</body>
+</html>

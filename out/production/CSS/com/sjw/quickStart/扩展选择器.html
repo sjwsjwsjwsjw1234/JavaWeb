@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            color: green;
+        }
+        i,b{
+            color: blue;
+        }
+        div span{
+            color: red;
+        }
+        div>p{
+            border: 5px solid red;
+        }
+        input[type="password"]{
+            background: green;
+        }
+        a:visited{
+            color: black;
+        }
+        a:active{
+            color: gray;
+        }
+        a:link{
+            color: yellow;
+        }
+        a:hover{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<!--
+1. *表示选择所有元素
+2. 选择器1，选择器2{} 并集选择器
+3. 选择器1 选择器2{} 子选择器，筛选选择器1下的选择器2
+4. 父选择器 选择器1>选择器2{} 筛选选择器2的父元素选择器1
+5. 属性选择器：选择元素名称，属性名=属性值的元素
+    语法：  元素名称[属性名="属性值"]{}
+
+6. 伪类选择器：选择一些元素具有的状态
+    语法： 元素:状态{}
+
+-->
+<p>*选择器</p>
+<i>并集选择器</i>
+<br>
+<b>并集选择器</b>
+<div><span>子选择器</span></div>
+<span>子选择器</span>
+<div><p>父选择器</p></div>
+<input type="password">属性选择器
+<br>
+<input >属性选择器
+<br>
+<a href="#">伪类选择器</a>
+</body>
+</html>
